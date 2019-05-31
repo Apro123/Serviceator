@@ -1,0 +1,43 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>login</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content>
+  <!-- <div class="title"> -->
+    <br>
+    <h1>Please login</h1>
+    <br><br> <br><br>
+  <!-- </div> -->
+
+  <p class="login"><strong>Username</strong></p>
+  <ion-item class="login">
+    <ion-label> <ion-icon name="person"></ion-icon></ion-label>
+    <ion-input type="text" clearInput=true text-left [(ngModel)]="username" placeholder="Username"></ion-input>
+  </ion-item>
+  <br>
+  <p class="login"><strong>Password</strong></p>
+
+  <ion-item class="clear-item-inner login">
+    <ion-label> <ion-icon name="md-lock"></ion-icon></ion-label>
+    <ion-input *ngIf="!show" [(ngModel)]="password" class="half-inp half-border-inp" type="password" placeholder="Password"></ion-input>
+    <ion-input *ngIf="show" [(ngModel)]="password" class="half-inp half-border-inp" type="text" placeholder="Password"></ion-input>
+    <button class="showhidePass" color="light" ion-button type="button" clearInput=true item-end (click)="showhidePass()">
+      <ion-icon *ngIf="!show" name="eye"></ion-icon>
+      <ion-icon *ngIf="show" name="eye-off"></ion-icon>
+    </button>
+  </ion-item>
+  <br><br><br>
+  <div class="login">
+    <ion-button color="secondary" (click)="submit()">Login In</ion-button>
+    <br><br><br><br>
+    <a (click)="openModal()">Create an account</a>
+  </div>
+
+  <ion-button (click)="traverse()">traverse</ion-button>
+  <ion-button (click)="clear()">Clear</ion-button>
+
+
+
+</ion-content>

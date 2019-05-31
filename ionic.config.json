@@ -1,6 +1,8 @@
 {
   "name": "Serviceator",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular",
   "id": "54962fde"
 }

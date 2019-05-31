@@ -1,6 +1,49 @@
 // App Styles
 // ----------------------------------------------------------------------------
-// Put style rules here that you want to apply to the entire application. These 
-// styles are for the entire app and not just one component. Additionally, this 
-// file can hold Sass mixins, functions, and placeholder classes to be imported 
+// Put style rules here that you want to apply to the entire application. These
+// styles are for the entire app and not just one component. Additionally, this
+// file can hold Sass mixins, functions, and placeholder classes to be imported
 // and used throughout the application.
+
+.title {
+  text-align: center;
+  align-items: center;
+  padding-top: 25%;
+}
+
+.login {
+  text-align: left;
+  padding-left: 40%;
+  padding-right: 35%;
+}
+
+.login-input {
+  text-align: left;
+  padding-left: 39.25%;
+  padding-right: 45%;
+}
+
+@media only screen and (orientation: landscape)  {
+   .my-modal {
+    .modal-wrapper {
+      position: absolute;
+      top: 0 !important;
+      left: 0 !important;
+      display: block;
+      width: 100% !important;
+      height: 100% !important;
+    }
+  }
+}
+
+.error-message
+{
+  color: red;
+  font-size: 14px;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.submit-btn {
+  margin-top: 40px;
+}
