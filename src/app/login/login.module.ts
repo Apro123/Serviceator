@@ -7,7 +7,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { LoginPage } from './login.page';
 
-import { CreateModalPage } from './../create-modal/create-modal.page';
+// import { CreateModalPage } from './../create-modal/create-modal.page';
 
 const routes: Routes = [
   {
@@ -25,7 +25,7 @@ const routes: Routes = [
     // CreateModalPageModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [LoginPage, CreateModalPage],
-  entryComponents: [CreateModalPage]
+  declarations: [LoginPage],//, CreateModalPage],
+  // entryComponents: [CreateModalPage]
 })
 export class LoginPageModule {}

@@ -17,12 +17,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-// import { CreateModalPageModule } from './create-modal/create-modal.module'
+import { CreateModalPageModule } from './create-modal/create-modal.module'
 
 @NgModule({
   declarations: [AppComponent],
   // entryComponents: [CreateModalPage],
-  imports: [ BrowserModule, BrowserAnimationsModule, IonicModule.forRoot(), AppRoutingModule, IonicStorageModule.forRoot(), FormsModule, ReactiveFormsModule],
+  imports: [ BrowserModule, BrowserAnimationsModule, IonicModule.forRoot(), AppRoutingModule, IonicStorageModule.forRoot(), FormsModule, ReactiveFormsModule, CreateModalPageModule],
   providers: [
     StatusBar,
     SplashScreen,
