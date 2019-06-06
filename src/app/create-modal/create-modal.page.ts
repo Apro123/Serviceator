@@ -52,7 +52,7 @@ export class CreateModalPage implements OnInit {
     ],
     'email': [
       { type: 'required', message: 'Email is required.' },
-      { type: 'pattern', message: 'Please wnter a valid email.' }
+      { type: 'pattern', message: 'Please enter a valid email.' }
     ],
     'phone': [
       { type: 'required', message: 'Phone is required.' },

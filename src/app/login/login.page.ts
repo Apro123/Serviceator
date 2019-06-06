@@ -77,7 +77,7 @@ export class LoginPage implements OnInit {
     await this.accountManager.login(this.username, this.password).then((val) => {
       logIn = val;
     });
-    console.log("logIn: " + logIn);
+    // console.log("logIn: " + logIn);
     if(!logIn) {
       this.toastCtrl.create({
         message: 'INVALID ACCOUNT! PLEASE CREATE A NEW ACCOUNT IF YOU DO NOT HAVE ONE!',

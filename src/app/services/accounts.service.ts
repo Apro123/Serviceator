@@ -120,10 +120,13 @@ export class AccountsService {
   async validUsername(key: string): Promise<any> {
     return await new Promise<any>((resolve, reject) => {
       this.accounts.get(key).then((response) => {
+        if(response== null) {
+          resolve(true);
+        }
         resolve(false);
       }).catch((e) => {
         resolve(true);
-        console.log("username exists");
+        // console.log("username exists");
       });
     });
 

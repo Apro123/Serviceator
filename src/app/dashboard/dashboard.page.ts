@@ -13,18 +13,19 @@ export class DashboardPage implements OnInit {
   accountID;
   doneJobs = 0;
   donePrice = 0;
-  futureJobs = 0;
-  futurePrice = 0;
   accountServices = []; //all the service ids
   allServices = [[]];
   dates = [];
+  ind = '3';
+  future: boolean;
 
-  constructor(private serviceManager: ServiceStorageService, private accountManager: AccountsService, private router: Router) { }
+  constructor(private serviceManager: ServiceStorageService, private accountManager: AccountsService, private router: Router) {
+   }
 
   async ngOnInit() {
     await this.accountManager.getDatabase().get("login").then((accID) => {
       this.accountID = accID;
-      console.log("accid:" + accID);
+      // console.log("accid:" + accID);
     }).catch((error) => {
       console.log("getting login info error: ", error);
     });
@@ -38,7 +39,7 @@ export class DashboardPage implements OnInit {
     this.allServices = [];
     var account = this.serviceManager.getDatabase();
 
-    console.log("accountid: " + this.accountID);
+    // console.log("accountid: " + this.accountID);
     await account.get(this.accountID).then((ids) => {
       this.accountServices = ids;
       this.getServiceIDs2();
@@ -49,7 +50,8 @@ export class DashboardPage implements OnInit {
   async getServiceIDs2() {
     var services = this.serviceManager.getDatabase();
     var i;
-
+    this.doneJobs = this.accountServices.length;
+    this.donePrice = 0;
     for(i = 0; i < this.accountServices.length; i++) {
       var serviceID = this.accountServices[i] + '';
       var serviceDetail = [];
@@ -57,32 +59,48 @@ export class DashboardPage implements OnInit {
         serviceDetail = serviceDetail.concat(id);
         // console.log("id: " + id);
         this.allServices.push(serviceDetail);
+        // if(isNaN(parseFloat(serviceDetail[6]))) {
+          this.donePrice += parseFloat(serviceDetail[6]);
+          console.log("price: " + this.donePrice);
+        // }
+
         serviceDetail = [];
         this.allServices.sort(function(a,b) {
           // console.log("a[3]: " + a[3]);
           return (a[3] < b[3]) ? 1 : ((a[3] > b[3] ? -1 : 0));
         });
         // console.log("service detail: " + serviceDetail);
-        console.log(JSON.stringify(this.allServices));
+        // console.log(JSON.stringify(this.allServices));
       });
     }
-    console.log("before after");
     this.dateServices();
   }
 
-  dateServices() {
-    console.log("after");
+  dateServices() { //3 or 7
     var i;
+    var index = this.ind;
+    if(index + '' == '3') {
+      this.future = false;
+    } else {
+      this.future = true;
+    }
+    this.allServices.sort(function(a,b) {
+      // console.log("a[3]: " + a[3]);
+      return (a[index] < b[index]) ? 1 : ((a[index] > b[index] ? -1 : 0));
+    });
 
     for(i = 0; i < this.allServices.length; i++) {
-      var temp = new Date(this.allServices[i][3]);
+      // console.log("date: " + this.allServices[i][Number(index)]);
+      var temp = new Date(this.allServices[i][Number(index)]);
+      // console.log("date: " + temp);
       this.dates.push('' + temp.toString());
       // this.dates.push('' + temp.getMonth() + ' ' + temp.getDate() + ', ' + temp.getFullYear() + ' ' + temp.getHours() + ':' + temp.getMinutes());
     }
   }
 
   manager() {
-    this.router.navigate(['/manager']);
+    this.router.navigateByUrl('/manager', {skipLocationChange: true}).then(()=>
+    this.router.navigate(['/manager']));
   }
 
   settings() {

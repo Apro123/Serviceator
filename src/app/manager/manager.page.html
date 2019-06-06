@@ -17,9 +17,9 @@
 
 <ion-content>
   <ion-button *ngIf="!addService" (click)="editService(-1)">Add Service</ion-button>
-  <ion-button (click)="traverse()">Traverse</ion-button>
+  <!-- <ion-button (click)="traverse()">Traverse</ion-button>
   <ion-button (click)="clear()">Clear</ion-button>
-  <ion-button (click)="printLog()">loggedin</ion-button>
+  <ion-button (click)="printLog()">loggedin</ion-button> -->
   <div *ngIf="addService">
     <ion-card>
       <ion-card-header>
@@ -45,7 +45,7 @@
           <ion-input type="text" text-right [(ngModel)]="address" placeholder="Address"></ion-input>
         </p>
         <p><strong>Price: </strong>
-          <ion-input type="text" text-right [(ngModel)]="price" placeholder="Price"></ion-input>
+          <ion-input type="number" text-right [(ngModel)]="price" placeholder="Price"></ion-input>
         </p>
         <p><strong>Future Checkup Date: </strong>
           <ion-datetime display-format="MM-DD-YYYYTHH:mm" picker-format="MMMM D YYYY H m" [(ngModel)]="futureDate" placeholder="Date"></ion-datetime>
@@ -61,7 +61,7 @@
     <ion-card>
       <ion-card-header *ngIf="serviceArr[i] != null">
         <ion-card-title>Service ID #{{serviceArr[i][0]}}
-          <ion-icon *ngIf="edit[i]" name="trash" (click)="removeService(serviceArr[i][0]);"></ion-icon>
+          <ion-icon *ngIf="!edit[i]" name="trash" (click)="removeService(serviceArr[i][0]);"></ion-icon>
           <ion-icon name="create" (click)="editService(i)"></ion-icon>
         </ion-card-title>
       </ion-card-header>
@@ -91,7 +91,7 @@
           <ion-input type="text" text-right [(ngModel)]="address" placeholder="{{serviceArr[i][5]}}"></ion-input>
         </p>
         <p><strong>Price: </strong>
-          <ion-input type="text" text-right [(ngModel)]="price" placeholder="{{serviceArr[i][6]}}"></ion-input>
+          <ion-input type="number" text-right [(ngModel)]="price" placeholder="{{serviceArr[i][6]}}"></ion-input>
         </p>
         <p><strong>Future Checkup Date: </strong>
           <ion-datetime display-format="MM-DD-YYYYTHH:mm" picker-format="MMMM D YYYY H m" [(ngModel)]="futureDate" placeholder="{{serviceArr[i][7]}}"></ion-datetime>

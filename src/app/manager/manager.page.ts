@@ -29,7 +29,7 @@ export class ManagerPage implements OnInit {
   async ngOnInit() {
     await this.accountManager.getDatabase().get("login").then((accID) => {
       this.accountID = accID;
-      console.log("accid:" + accID);
+      // console.log("accid:" + accID);
     }).catch((error) => {
       console.log("getting login info error: ", error);
     });
@@ -37,13 +37,14 @@ export class ManagerPage implements OnInit {
       this.router.navigate(['/login']);
     }
     this.getServiceIDs();
+    this.cancel();
   }
 
   async getServiceIDs() {
     this.allServices = [];
     var account = this.serviceManager.getDatabase();
 
-    console.log("accountid: " + this.accountID);
+    // console.log("accountid: " + this.accountID);
     await account.get(this.accountID).then((ids) => {
       this.accountServices = ids;
       var services = this.serviceManager.getDatabase();
@@ -88,8 +89,9 @@ export class ManagerPage implements OnInit {
     }
   }
 
-  removeService(servID) {
-    this.serviceManager.removeService(this.accountID, servID);
+  async removeService(servID) {
+    await this.serviceManager.removeService(this.accountID, servID);
+    this.getServiceIDs();
   }
 
   async submitNewService() {
@@ -161,7 +163,10 @@ export class ManagerPage implements OnInit {
   }
 
   dashboard() {
-    this.router.navigate(['/dashboard']);
+    this.cancel();
+    this.router.navigateByUrl('/dashboard', {skipLocationChange: true}).then(()=>
+    this.router.navigate(['/dashboard']));
+    // this.router.navigate(['/dashboard']);
   }
 
   traverse() {

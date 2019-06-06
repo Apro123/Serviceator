@@ -22,24 +22,24 @@
           </ion-row>
           <ion-row>
             <ion-col align-self-start>
-              <ion-item>Done Jobs: </ion-item>
+              <ion-item>Total Jobs: </ion-item>
             </ion-col>
             <ion-col align-self-end>
               <ion-item>
                 <ion-label align="right" text-right>
-                  {{doneJobs}} Jobs and ${{donePrice}} earned!
+                  {{doneJobs}} Jobs
                 </ion-label>
               </ion-item>
             </ion-col>
           </ion-row>
           <ion-row>
             <ion-col align-self-start>
-              <ion-item>Future Jobs: </ion-item>
+              <ion-item>Total Price: </ion-item>
             </ion-col>
             <ion-col align-self-end>
               <ion-item>
                 <ion-label align="right" text-right>
-                  {{futureJobs}} Jobs and ${{futurePrice}} to be earned!
+                   ${{donePrice}} earned!
                 </ion-label>
               </ion-item>
             </ion-col>
@@ -73,6 +73,15 @@
       <ion-col style="padding-left: 5%"><strong>Services</strong>:</ion-col>
       <ion-col align-self-end>
         <!-- TODO: search bar -->
+
+        <div style="padding-right: 5%">
+          <!-- <p>Sort by: </p> -->
+          <ion-select [(ngModel)]="ind" (ionChange)="dateServices()" placeholder="Sort by">
+            <ion-select-option selected value='3'>Sort by Date of Service</ion-select-option>
+            <ion-select-option value='7'>Sort by Future Date of Service</ion-select-option>
+          </ion-select>
+        </div>
+
       </ion-col>
     </ion-row>
   </ion-grid>
