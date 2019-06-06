@@ -23,6 +23,9 @@ const routes: Routes = [
     ReactiveFormsModule,
     RouterModule.forChild(routes)
   ],
+  exports: [
+    CreateModalPage
+  ],
   declarations: [CreateModalPage],
   entryComponents: [CreateModalPage]
 })

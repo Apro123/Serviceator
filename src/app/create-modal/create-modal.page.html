@@ -1,33 +1,16 @@
 <ion-header>
   <ion-toolbar>
+    <ion-button left (click)="myDismiss(false)">
+      <!-- <a (click)="myDismiss()">Back</a> -->
+      Back
+    </ion-button>
     <ion-title>
-      <ion-grid>
-        <ion-row>
-          <ion-col size-sm align-self-start>
-            <a (click)="myDismiss()">Back to Login</a>
-          </ion-col>
-          <ion-col align-self-center>
-            Create An Account
-          </ion-col>
-          <ion-col align-self-end></ion-col>
-        </ion-row>
-      </ion-grid>
+      Create an Account
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <!-- <ion-item>
-    <ion-label position="floating" color="primary">Username</ion-label>
-    <ion-input type="text" name="username" formControlName="username" class="form-controll" required></ion-input>
-  </ion-item> -->
-<!-- <div class="validation-errors">
-  <ng-container *ngFor="let validation of validation_messages.username">
-    <div class="error-message" *ngIf="validations_form.get('username').hasError(validation.type) && (validations_form.get('username').dirty || validations_form.get('username').touched)">
-      {{ validation.message }}
-    </div>
-  </ng-container>
-</div> -->
 
   <form [formGroup]="validations_form"  (ngSubmit)="onSubmit(validations_form.value)">
     <ion-item>

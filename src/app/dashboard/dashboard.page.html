@@ -7,5 +7,91 @@
 </ion-header>
 
 <ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col align-self-start>
+        <ion-grid>
+          <ion-row>
+            <ion-col align-self-start>
+            </ion-col>
+            <ion-col align-self-center>
+              <ion-item lines="none">STATISTICS!!</ion-item>
+            </ion-col>
+            <ion-col align-self-end>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col align-self-start>
+              <ion-item>Done Jobs: </ion-item>
+            </ion-col>
+            <ion-col align-self-end>
+              <ion-item>
+                <ion-label align="right" text-right>
+                  {{doneJobs}} Jobs and ${{donePrice}} earned!
+                </ion-label>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col align-self-start>
+              <ion-item>Future Jobs: </ion-item>
+            </ion-col>
+            <ion-col align-self-end>
+              <ion-item>
+                <ion-label align="right" text-right>
+                  {{futureJobs}} Jobs and ${{futurePrice}} to be earned!
+                </ion-label>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
 
+      </ion-col>
+      <ion-col align-self-end>
+
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <ion-button (click)="settings()" expand="full">Settings</ion-button>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-button (click)="manager()" expand="full">Service Manager <br> (Add, Edit, or Delete Services)</ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <br><br><br><br>
+
+  <!-- Add services now  -->
+  <ion-grid>
+    <ion-row>
+      <ion-col style="padding-left: 5%"><strong>Services</strong>:</ion-col>
+      <ion-col align-self-end>
+        <!-- TODO: search bar -->
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <div *ngFor="let serviceArr of allServices; let i = index">
+    <ion-card>
+      <ion-card-header *ngIf="serviceArr[i] != null">
+        <ion-card-title>Service ID #{{serviceArr[0]}}
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content *ngIf="serviceArr[i] != null">
+        <p><strong>Name: </strong>{{serviceArr[1]}}</p>
+        <p><strong>Service: </strong>{{serviceArr[2]}}</p>
+        <p><strong>Date: </strong>{{dates[i]}}</p>
+        <!-- <p>{{serviceArr[3]}}</p> -->
+        <p><strong>Info: </strong>{{serviceArr[4]}}</p>
+        <p><strong>Billing Address: </strong>{{serviceArr[5]}}</p>
+        <p><strong>Price: </strong>{{serviceArr[6]}}</p>
+        <p><strong>Future Checkup Date: </strong>{{serviceArr[7]}}</p>
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>

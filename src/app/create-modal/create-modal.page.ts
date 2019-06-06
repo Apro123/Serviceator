@@ -135,27 +135,28 @@ export class CreateModalPage implements OnInit {
     console.log(this.previousUsername);
     this.validations_form.controls['username'].setValue(this.previousUsername);
 
-    this.validations_form.controls['username'].setValue("Apro123");
-    this.validations_form.controls['name'].setValue("firstname");
-    this.validations_form.controls['lastname'].setValue("last");
-    this.validations_form.controls['email'].setValue("emailk@asfewa");
+    // this.validations_form.controls['username'].setValue("Apro123");
+    // this.validations_form.controls['name'].setValue("firstname");
+    // this.validations_form.controls['lastname'].setValue("last");
+    // this.validations_form.controls['email'].setValue("emailk@asfewa");
     // this.validations_form.controls['matching_passwords'].get['password'].setValue("As123");
     // this.validations_form.controls['matching_passwords'].get['confirm_password'].setValue("As123");
     // this.validations_form.controls['country_phone'].get['phone'].setValue("+59894231234");
 
   }
 
-  validUsername() {
-    this.goodUsername = this.accountManager.validUsername(this.validations_form.get('username').value + '');
-    return this.goodUsername;
-  }
-
-  onSubmit(values) {
-    if(this.validUsername()) {
+  async onSubmit(values) {
+    console.log("submit clicked");
+    await this.accountManager.validUsername(this.validations_form.get('username').value + '').then((val) => {
+      this.goodUsername = val;
+    });
+    console.log("got username");
+    if(this.goodUsername) {
       this.accountManager.addAccount(values.username + '', values);
       // console.log(values.get('matching_passwords').get('password').value);
       this.result = values;
-      this.myDismiss();
+      console.log("going to dismiss");
+      this.myDismiss(true);
     } else {
       this.toastCtrl.create({
         message: 'USERNAME ALREADY EXISTS! PLEASE PICK ANOTHER ONE!',
@@ -168,8 +169,12 @@ export class CreateModalPage implements OnInit {
   }
 
 
-  async myDismiss() {
-    await this.modalController.dismiss(this.result);
+  async myDismiss(submit) {
+    console.log("dismiss clicked clicked");
+    console.log("submit: " + submit);
+    const modal = await this.modalController.getTop();
+
+    modal.dismiss(submit);
   }
 
 }

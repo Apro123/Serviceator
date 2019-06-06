@@ -1,9 +1,105 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>manager</ion-title>
+    <ion-title>
+      <ion-grid>
+        <ion-row>
+          <ion-col size-sm align-self-start>
+            <a (click)="dashboard();">Back to Dashboard</a>
+          </ion-col>
+          <ion-col align-self-center>
+            Service Manager
+          </ion-col>
+          <!-- <ion-col align-self-end></ion-col> -->
+        </ion-row>
+      </ion-grid></ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-button *ngIf="!addService" (click)="editService(-1)">Add Service</ion-button>
+  <ion-button (click)="traverse()">Traverse</ion-button>
+  <ion-button (click)="clear()">Clear</ion-button>
+  <ion-button (click)="printLog()">loggedin</ion-button>
+  <div *ngIf="addService">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Adding Service
+          <ion-icon *ngIf="!addService" name="trash" (click)="removeService(serviceArr[0]);"></ion-icon>
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p><strong>Name: </strong>
+          <ion-input type="text" text-right [(ngModel)]="name" placeholder="Name"></ion-input>
+        </p>
+        <p><strong>Service: </strong>
+          <ion-input type="text" text-right [(ngModel)]="service" placeholder="Service"></ion-input>
+        </p>
+        <p><strong>Date of Service: </strong>
+          <ion-datetime display-format="MM-DD-YYYYTHH:mm" picker-format="MMMM D YYYY H m" [(ngModel)]="date" placeholder="Date"></ion-datetime>
+          <!-- <ion-input type="text" text-right [(ngModel)]="date" placeholder="Date"></ion-input> -->
+        </p>
+        <p><strong>Info: </strong>
+          <ion-input type="text" text-right [(ngModel)]="info" placeholder="Info"></ion-input>
+        </p>
+        <p><strong>Billing Address: </strong>
+          <ion-input type="text" text-right [(ngModel)]="address" placeholder="Address"></ion-input>
+        </p>
+        <p><strong>Price: </strong>
+          <ion-input type="text" text-right [(ngModel)]="price" placeholder="Price"></ion-input>
+        </p>
+        <p><strong>Future Checkup Date: </strong>
+          <ion-datetime display-format="MM-DD-YYYYTHH:mm" picker-format="MMMM D YYYY H m" [(ngModel)]="futureDate" placeholder="Date"></ion-datetime>
+          <!-- <ion-input type="text" text-right [(ngModel)]="futureDate" placeholder="Date"></ion-input> -->
+        </p>
+        <ion-button (click)="submitNewService()">Save</ion-button>
+        <ion-button (click)="cancel()">Cancel</ion-button>
+      </ion-card-content>
+    </ion-card>
+  </div>
 
+  <div *ngFor="let serviceArr of allServices; let i = index">
+    <ion-card>
+      <ion-card-header *ngIf="serviceArr[i] != null">
+        <ion-card-title>Service ID #{{serviceArr[i][0]}}
+          <ion-icon *ngIf="edit[i]" name="trash" (click)="removeService(serviceArr[i][0]);"></ion-icon>
+          <ion-icon name="create" (click)="editService(i)"></ion-icon>
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content *ngIf="!edit[i] && serviceArr[i] != null">
+        <p><strong>Name: </strong>{{serviceArr[i][1]}}</p>
+        <p><strong>Service: </strong>{{serviceArr[i][2]}}</p>
+        <p><strong>Date: </strong>{{serviceArr[i][3]}}</p>
+        <p><strong>Info: </strong>{{serviceArr[i][4]}}</p>
+        <p><strong>Billing Address: </strong>{{serviceArr[i][5]}}</p>
+        <p><strong>Price: </strong>{{serviceArr[i][6]}}</p>
+        <p><strong>Future Checkup Date: </strong>{{serviceArr[i][7]}}</p>
+      </ion-card-content>
+      <ion-card-content *ngIf="edit[i]">
+        <p><strong>Name: </strong>
+          <ion-input type="text" text-right [(ngModel)]="name" placeholder="{{serviceArr[i][1]}}"></ion-input>
+        </p>
+        <p><strong>Service: </strong>
+          <ion-input type="text" text-right [(ngModel)]="service" placeholder="{{serviceArr[i][2]}}"></ion-input>
+        </p>
+        <p><strong>Date of Service: </strong>
+          <ion-datetime display-format="MM-DD-YYYYTHH:mm" picker-format="MMMM D YYYY H m" [(ngModel)]="date" placeholder="{{serviceArr[i][3]}}"></ion-datetime>
+        </p>
+        <p><strong>Info: </strong>
+          <ion-input type="text" text-right [(ngModel)]="info" placeholder="{{serviceArr[i][4]}}"></ion-input>
+        </p>
+        <p><strong>Billing Address: </strong>
+          <ion-input type="text" text-right [(ngModel)]="address" placeholder="{{serviceArr[i][5]}}"></ion-input>
+        </p>
+        <p><strong>Price: </strong>
+          <ion-input type="text" text-right [(ngModel)]="price" placeholder="{{serviceArr[i][6]}}"></ion-input>
+        </p>
+        <p><strong>Future Checkup Date: </strong>
+          <ion-datetime display-format="MM-DD-YYYYTHH:mm" picker-format="MMMM D YYYY H m" [(ngModel)]="futureDate" placeholder="{{serviceArr[i][7]}}"></ion-datetime>
+          <!-- <ion-input type="text" text-right [(ngModel)]="futureDate" placeholder="{{serviceArr[i][7]}}"></ion-input> -->
+        </p>
+        <ion-button (click)="submitService(i)"></ion-button>
+        <ion-button (click)="cancel()">Cancel</ion-button>
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>

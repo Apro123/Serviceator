@@ -5,11 +5,11 @@
 </ion-header> -->
 
 <ion-content>
-  <!-- <div class="title"> -->
+  <div class="title">
     <br>
     <h1>Please login</h1>
     <br><br> <br><br>
-  <!-- </div> -->
+  </div>
 
   <p class="login"><strong>Username</strong></p>
   <ion-item class="login">
@@ -31,8 +31,10 @@
   <br><br><br>
   <div class="login">
     <ion-button color="secondary" (click)="submit()">Login In</ion-button>
-    <br><br><br><br>
-    <a (click)="openModal()">Create an account</a>
+    <br><br>
+    <div style="padding-left: 2%">
+      <a (click)="openModal()">Create an account</a>
+    </div>
   </div>
 
   <ion-button (click)="traverse()">traverse</ion-button>
