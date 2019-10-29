@@ -6,39 +6,43 @@
   </ion-toolbar>
 </ion-header>
 
+
 <ion-content>
+  <ion-refresher slot="fixed" pullFactor="0.5" pullMin="100" pullMax="200" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <ion-grid>
     <ion-row>
-      <ion-col align-self-start>
+      <ion-col class="align-self-start">
         <ion-grid>
           <ion-row>
-            <ion-col align-self-start>
+            <ion-col class="align-self-start">
             </ion-col>
-            <ion-col align-self-center>
+            <ion-col class="align-self-center">
               <ion-item lines="none">STATISTICS!!</ion-item>
             </ion-col>
-            <ion-col align-self-end>
+            <ion-col class="align-self-end">
             </ion-col>
           </ion-row>
           <ion-row>
-            <ion-col align-self-start>
+            <ion-col class="align-self-start">
               <ion-item>Total Jobs: </ion-item>
             </ion-col>
-            <ion-col align-self-end>
+            <ion-col class="align-self-end">
               <ion-item>
-                <ion-label align="right" text-right>
+                <ion-label align="right" class="text-right">
                   {{doneJobs}} Jobs
                 </ion-label>
               </ion-item>
             </ion-col>
           </ion-row>
           <ion-row>
-            <ion-col align-self-start>
+            <ion-col class="align-self-start">
               <ion-item>Total Price: </ion-item>
             </ion-col>
-            <ion-col align-self-end>
+            <ion-col class="align-self-end">
               <ion-item>
-                <ion-label align="right" text-right>
+                <ion-label align="right" class="text-right">
                    ${{donePrice}} earned!
                 </ion-label>
               </ion-item>
@@ -47,7 +51,7 @@
         </ion-grid>
 
       </ion-col>
-      <ion-col align-self-end>
+      <ion-col class="align-self-end">
 
         <ion-grid>
           <ion-row>
@@ -71,7 +75,7 @@
   <ion-grid>
     <ion-row>
       <ion-col style="padding-left: 5%"><strong>Services</strong>:</ion-col>
-      <ion-col align-self-end>
+      <ion-col class="align-self-end">
         <!-- TODO: search bar -->
 
         <div style="padding-right: 5%">

@@ -14,7 +14,7 @@
   <p class="login"><strong>Username</strong></p>
   <ion-item class="login">
     <ion-label> <ion-icon name="person"></ion-icon></ion-label>
-    <ion-input type="text" clearInput=true text-left [(ngModel)]="username" placeholder="Username"></ion-input>
+    <ion-input type="text" clearInput=true class="text-left" [(ngModel)]="username" placeholder="Username"></ion-input>
   </ion-item>
   <br>
   <p class="login"><strong>Password</strong></p>
@@ -30,7 +30,7 @@
   </ion-item>
   <br><br><br>
   <div class="login">
-    <ion-button color="secondary" (click)="submit()">Login In</ion-button>
+    <ion-button color="success" (click)="submit()">Login In</ion-button>
     <br><br>
     <div style="padding-left: 2%">
       <a (click)="openModal()">Create an account</a>

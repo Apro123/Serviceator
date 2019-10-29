@@ -31,11 +31,21 @@ export class LoginPage implements OnInit {
   username: string;
   password: string;
   show = false;
+  accountID;
 
   constructor(private accountManager: AccountsService, private toastCtrl: ToastController,
      private modalController: ModalController, private router: Router) { }
 
   ngOnInit() {
+    this.accountManager.getDatabase().get("login").then((accID) => {
+      this.accountID = accID;
+      // console.log("accid:" + accID);
+    }).catch((error) => {
+      console.log("getting login info error: ", error);
+    });
+    if(this.accountID != "" || this.accountID != null) {
+      this.router.navigate(['/dashboard']);
+    }
   }
 
   showhidePass() {

@@ -107,4 +107,13 @@ export class DashboardPage implements OnInit {
     this.router.navigate(['/settings']);
   }
 
+  async doRefresh(event) {
+    await Promise.all([this.getServiceIDs()]);
+
+    setTimeout(() => {
+      event.target.complete();
+    }, 2000);
+
+  }
+
 }
